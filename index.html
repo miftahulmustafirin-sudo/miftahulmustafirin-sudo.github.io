@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Miftahul Mustafirin - Building Scalable HPC Automation Systems">
+    <title>Miftahul Mustafirin - Portfolio</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.1/umd/lucide.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #0f172a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .hidden {
+            display: none !important;
+        }
+
+        /* Navbar Styles */
+        nav {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s;
+        }
+
+        nav.scrolled {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 64px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #22d3ee, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: capitalize;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #22d3ee;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #22d3ee;
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .nav-links a.active::after {
+            transform: scaleX(1);
+        }
+
+        .menu-toggle {
+            display: block;
+            background: none;
+            border: none;
+            color: #d1d5db;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(12px);
+            border-top: 1px solid #334155;
+            animation: fadeIn 0.3s;
+        }
+
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: #d1d5db;
+            text-decoration: none;
+            text-transform: capitalize;
+            transition: all 0.3s;
+        }
+
+        .mobile-menu a:hover,
+        .mobile-menu a.active {
+            background: rgba(34, 211, 238, 0.2);
+            color: #22d3ee;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a);
+            overflow: hidden;
+            padding-top: 64px;
+        }
+
+        .bg-grid-pattern {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(rgba(6, 182, 212, 0.1) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(6, 182, 212, 0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.1;
+        }
+
+        .hero-container {
+            position: relative;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 5rem 1rem;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(34, 211, 238, 0.1);
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            border-radius: 9999px;
+            margin-bottom: 2rem;
+        }
+
+        .badge span {
+            color: #22d3ee;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .tagline {
+            font-size: 1.5rem;
+            color: #22d3ee;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            color: #d1d5db;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-tag {
+            padding: 0.5rem 1rem;
+            background: #1e293b;
+            color: #22d3ee;
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid #334155;
+            transition: all 0.3s;
+        }
+
+        .skill-tag:hover {
+            border-color: #22d3ee;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            padding-top: 1rem;
+        }
+
+        .btn-primary {
+            padding: 0.75rem 2rem;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+        }
+
+        .btn-secondary {
+            padding: 0.75rem 2rem;
+            border: 2px solid #06b6d4;
+            color: #06b6d4;
+            background: transparent;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: #06b6d4;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            animation: slideInRight 0.6s ease-out;
+        }
+
+        .image-wrapper {
+            position: relative;
+        }
+
+        .image-glow {
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(to right, #22d3ee, #3b82f6);
+            border-radius: 1rem;
+            filter: blur(40px);
+            opacity: 0.75;
+            transition: opacity 0.5s;
+            animation: pulseSlow 3s ease-in-out infinite;
+        }
+
+        .image-wrapper:hover .image-glow {
+            opacity: 1;
+        }
+
+        .image-container {
+            position: relative;
+            width: 320px;
+            height: 320px;
+            background: linear-gradient(to bottom right, #1e293b, #0f172a);
+            border-radius: 1rem;
+            border: 2px solid rgba(34, 211, 238, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom right, rgba(34, 211, 238, 0.2), rgba(59, 130, 246, 0.2));
+        }
+
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: relative;
+            z-index: 10;
+        }
+
+        .image-placeholder {
+            width: 192px;
+            height: 192px;
+            background: rgba(51, 65, 85, 0.5);
+            border-radius: 0.75rem;
+            border: 2px dashed rgba(34, 211, 238, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .image-placeholder span {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 1rem;
+        }
+
+        .section-container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* About Section */
+        .about {
+            background: #0f172a;
+        }
+
+        .about-card {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(4px);
+            border-radius: 1rem;
+            padding: 2rem;
+            border: 1px solid #334155;
+            transition: all 0.3s;
+        }
+
+        .about-card:hover {
+            border-color: rgba(34, 211, 238, 0.5);
+        }
+
+        .about-text {
+            color: #d1d5db;
+            font-size: 1.125rem;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .interest-tag {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #22d3ee;
+        }
+
+        .interest-dot {
+            width: 8px;
+            height: 8px;
+            background: #22d3ee;
+            border-radius: 50%;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .interest-tag .label {
+            font-weight: 500;
+        }
+
+        .interest-tag .value {
+            color: #d1d5db;
+        }
+
+        /* Skills Section */
+        .skills {
+            background: rgba(30, 41, 59, 0.3);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: 1rem;
+            transition: all 0.3s;
+        }
+
+        .skill-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .skill-card h3 {
+            color: #22d3ee;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+            font-size: 1.125rem;
+            transition: color 0.3s;
+        }
+
+        .skill-card:hover h3 {
+            color: #67e8f9;
+        }
+
+        .skill-card p {
+            color: #d1d5db;
+        }
+
+        /* Education Section */
+        .education {
+            background: #0f172a;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .education-card {
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: 1rem;
+            transition: all 0.3s;
+        }
+
+        .education-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .education-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .education-card h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-card .field {
+            color: #22d3ee;
+            font-weight: 500;
+        }
+
+        .education-card .institution {
+            color: #9ca3af;
+            margin-top: 0.5rem;
+        }
+
+        /* Projects Page */
+        .projects-page {
+            min-height: 100vh;
+            padding-top: 6rem;
+            padding-bottom: 5rem;
+            background: linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a);
+        }
+
+        .projects-header {
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .projects-header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .projects-header p {
+            font-size: 1.25rem;
+            color: #9ca3af;
+            margin-bottom: 3rem;
+        }
+
+        .projects-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .project-card {
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: 1rem;
+            transition: all 0.3s;
+        }
+
+        .project-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(6, 182, 212, 0.2);
+        }
+
+        .project-header {
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .project-card:hover h3 {
+            color: #22d3ee;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #22d3ee;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .project-link:hover {
+            color: #67e8f9;
+        }
+
+        .project-description {
+            color: #d1d5db;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tech-tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(34, 211, 238, 0.1);
+            color: #22d3ee;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+        }
+
+        /* Contact Page */
+        .contact-page {
+            min-height: 100vh;
+            padding-top: 6rem;
+            padding-bottom: 5rem;
+            background: linear-gradient(to bottom right, #0f172a, #1e293b, #0f172a);
+        }
+
+        .contact-header {
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .contact-header h1 {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .contact-header p {
+            font-size: 1.25rem;
+            color: #9ca3af;
+            margin-bottom: 3rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            max-width: 896px;
+        }
+
+        .contact-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(71, 85, 105, 0.5);
+            border-radius: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover {
+            border-color: rgba(6, 182, 212, 0.5);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.2);
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .contact-icon {
+            padding: 0.75rem;
+            background: rgba(34, 211, 238, 0.1);
+            border-radius: 0.5rem;
+            border: 1px solid rgba(34, 211, 238, 0.3);
+            transition: all 0.3s;
+        }
+
+        .contact-card:hover .contact-icon {
+            background: rgba(34, 211, 238, 0.2);
+        }
+
+        .contact-icon svg {
+            color: #22d3ee;
+        }
+
+        .contact-details .label {
+            color: #9ca3af;
+            font-size: 0.875rem;
+        }
+
+        .contact-details .value {
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .contact-card:hover .contact-details .value {
+            color: #22d3ee;
+        }
+
+        .contact-arrow svg {
+            color: #4b5563;
+            transition: color 0.3s;
+        }
+
+        .contact-card:hover .contact-arrow svg {
+            color: #22d3ee;
+        }
+
+        /* Footer */
+        footer {
+            background: #020617;
+            border-top: 1px solid #334155;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: #9ca3af;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulseSlow {
+            0%, 100% {
+                opacity: 0.75;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translate(-50%, 0);
+            }
+            50% {
+                transform: translate(-50%, -10px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 768px) {
+            .nav-links {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: none;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            h1 {
+                font-size: 3.75rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .education-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .contact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .skills-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <div class="logo">MF</div>
+            <div class="nav-links">
+                <a href="#" data-page="home" class="active">Home</a>
+                <a href="#" data-page="projects">Projects</a>
+                <a href="#" data-page="contact">Contact</a>
+            </div>
+            <button class="menu-toggle" id="menuToggle">
+                <i data-lucide="menu" width="24" height="24"></i>
+            </button>
+        </div>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#" data-page="home" class="active">Home</a>
+            <a href="#" data-page="projects">Projects</a>
+            <a href="#" data-page="contact">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home-page">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="bg-grid-pattern"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="badge">
+                        <span>Available for opportunities</span>
+                    </div>
+                    <h1>Miftahul Mustafirin</h1>
+                    <p class="tagline">Building Scalable HPC Automation Systems</p>
+                    <p class="hero-description">
+                        Master's student in Information Technology at UGM, specializing in High-Performance Computing, 
+                        system automation, and Python-based application development.
+                    </p>
+                    <div class="skill-tags">
+                        <span class="skill-tag">HPC</span>
+                        <span class="skill-tag">Automation</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">DevOps</span>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="mailto:miftahulmustafirin8@gmail.com" class="btn-primary">Get in Touch</a>
+                        <a href="#" class="btn-secondary" data-page="projects">View Projects</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="image-wrapper">
+                        <div class="image-glow"></div>
+                        <div class="image-container">
+                            <div class="image-overlay"></div>
+                            <!-- Uncomment baris di bawah dan comment placeholder untuk menampilkan foto -->
+                            <img src="profile.jpg" alt="Miftahul Mustafirin" class="profile-image">
+                            <!-- <div class="image-placeholder">
+                                <span>Your Photo Here</span>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="scroll-indicator">
+                <i data-lucide="chevron-down" width="32" height="32" style="color: #22d3ee;"></i>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section class="about">
+            <div class="section-container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-card">
+                    <p class="about-text">
+                        I am a Master's student in Information Technology at UGM with a focus on High-Performance Computing (HPC), 
+                        system automation, and Python-based application development. I have experience building automatic HPC 
+                        provisioning systems using Flask, Ansible, and Docker, emphasizing idempotency, performance, and observability. 
+                        My interests include computational infrastructure research, DevOps, and distributed systems.
+                    </p>
+                    <div class="interest-tag">
+                        <div class="interest-dot"></div>
+                        <span class="label">Areas of Interest:</span>
+                        <span class="value">High-Performance Computing, Automation, Python Programming</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section class="skills">
+            <div class="section-container">
+                <h2 class="section-title">Technical Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <h3>Programming</h3>
+                        <p>Python, Bash, YAML</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Automation</h3>
+                        <p>Ansible, Docker, Systemd</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Web Framework</h3>
+                        <p>Flask, FastAPI</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Monitoring</h3>
+                        <p>Prometheus, Grafana</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Testing & CI/CD</h3>
+                        <p>Locust, GitHub Actions</p>
+                    </div>
+                    <div class="skill-card">
+                        <h3>Other Tools</h3>
+                        <p>Linux (Ubuntu), Git, VSCode</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="education">
+            <div class="section-container">
+                <h2 class="section-title">Education</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <div class="education-icon">🎓</div>
+                        <h3>Master's Degree</h3>
+                        <p class="field">Information Technology</p>
+                        <p class="institution">Universitas Gadjah Mada</p>
+                    </div>
+                    <div class="education-card">
+                        <div class="education-icon">🎓</div>
+                        <h3>Bachelor's Degree</h3>
+                        <p class="field">Internet Engineering Technology</p>
+                        <p class="institution">Universitas Gadjah Mada</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Projects Page -->
+    <div id="projects-page" class="hidden">
+        <section class="projects-page">
+            <div class="section-container">
+                <div class="projects-header">
+                    <h1>Projects</h1>
+                    <p>Showcasing my work in HPC automation and system development</p>
+                </div>
+                <div class="projects-list">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>HPC Account Provisioning Automation</h3>
+                            <a href="https://github.com/miftahulmustafirin-sudo/hpc-account-provisioning" target="_blank" rel="noopener noreferrer" class="project-link">
+                                <i data-lucide="github" width="18" height="18"></i>
+                                <span>View Repository</span>
+                                <i data-lucide="external-link" width="16" height="16"></i>
+                            </a>
+                        </div>
+                        <p class="project-description">
+                            A thesis project that develops an HPC account provisioning automation system using Flask, Ansible, and Docker. 
+                            Includes performance testing (execution time, TTFA, p95 latency) and resource monitoring using Prometheus–Grafana. 
+                            The system emphasizes idempotency, scalability, and observability in HPC environments.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Ansible</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">Prometheus</span>
+                            <span class="tech-tag">Grafana</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">HPC</span>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-header">
+                            <h3>AI Cubic Container Baseline</h3>
+                        </div>
+                        <p class="project-description">
+                            A Docker-only baseline experiment to measure the efficiency of container provisioning in on-premise HPC environments. 
+                            This project serves as a comparative benchmark for evaluating different provisioning approaches and optimization strategies.
+                        </p>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">HPC</span>
+                            <span class="tech-tag">Benchmarking</span>
+                            <span class="tech-tag">Performance Testing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact-page" class="hidden">
+        <section class="contact-page">
+            <div class="section-container">
+                <div class="contact-header">
+                    <h1>Get in Touch</h1>
+                    <p>Feel free to reach out for collaborations or opportunities</p>
+                </div>
+                <div class="contact-grid">
+                    <a href="mailto:miftahulmustafirin8@gmail.com" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-icon">
+                                <i data-lucide="mail" width="24" height="24"></i>
+                            </div>
+                            <div class="contact-details">
+                                <p class="label">Email</p>
+                                <p class="value">miftahulmustafirin8@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-arrow">
+                            <i data-lucide="external-link" width="20" height="20"></i>
+                        </div>
+                    </a>
+                    <a href="mailto:miftahulmustafirin@mail.ugm.ac.id" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-icon">
+                                <i data-lucide="mail" width="24" height="24"></i>
+                            </div>
+                            <div class="contact-details">
+                                <p class="label">Academic Email</p>
+                                <p class="value">miftahulmustafirin@mail.ugm.ac.id</p>
+                            </div>
+                        </div>
+                        <div class="contact-arrow">
+                            <i data-lucide="external-link" width="20" height="20"></i>
+                        </div>
+                    </a>
+                    <a href="https://github.com/miftahulmustafirin" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-icon">
+                                <i data-lucide="github" width="24" height="24"></i>
+                            </div>
+                            <div class="contact-details">
+                                <p class="label">GitHub</p>
+                                <p class="value">github.com/miftahulmustafirin</p>
+                            </div>
+                        </div>
+                        <div class="contact-arrow">
+                            <i data-lucide="external-link" width="20" height="20"></i>
+                        </div>
+                    </a>
+                    <a href="https://gitlab.com/miftahulmustafirin" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-icon">
+                                <i data-lucide="gitlab" width="24" height="24"></i>
+                            </div>
+                            <div class="contact-details">
+                                <p class="label">GitLab</p>
+                                <p class="value">gitlab.com/miftahulmustafirin</p>
+                            </div>
+                        </div>
+                        <div class="contact-arrow">
+                            <i data-lucide="external-link" width="20" height="20"></i>
+                        </div>
+                    </a>
+                    <a href="https://linkedin.com/in/miftahulmustafirin" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-icon">
+                                <i data-lucide="linkedin" width="24" height="24"></i>
+                            </div>
+                            <div class="contact-details">
+                                <p class="label">LinkedIn</p>
+                                <p class="value">linkedin.com/in/miftahulmustafirin</p>
+                            </div>
+                        </div>
+                        <div class="contact-arrow">
+                            <i data-lucide="external-link" width="20" height="20"></i>
+                        </div>
+                    </a>
+                    <a href="https://dev.hpc.my.id" target="_blank" rel="noopener noreferrer" class="contact-card">
+                        <div class="contact-info">
+                            <div class="contact-icon">
+                                <i data-lucide="globe" width="24" height="24"></i>
+                            </div>
+                            <div class="contact-details">
+                                <p class="label">Website</p>
+                                <p class="value">dev.hpc.my.id</p>
+                            </div>
+                        </div>
+                        <div class="contact-arrow">
+                            <i data-lucide="external-link" width="20" height="20"></i>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="section-container">
+            <p>© 2025 Miftahul Mustafirin. Built with HTML, CSS & JavaScript</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Navigation functionality
+        const navbar = document.getElementById('navbar');
+        const menuToggle = document.getElementById('menuToggle');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+        const pages = {
+            home: document.getElementById('home-page'),
+            projects: document.getElementById('projects-page'),
+            contact: document.getElementById('contact-page')
+        };
+
+        // Scroll effect for navbar
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+            const icon = menuToggle.querySelector('i');
+            const isOpen = mobileMenu.classList.contains('open');
+            icon.setAttribute('data-lucide', isOpen ? 'x' : 'menu');
+            lucide.createIcons();
+        });
+
+        // Page navigation
+        function navigateToPage(pageName) {
+            // Hide all pages
+            Object.values(pages).forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Show selected page
+            if (pages[pageName]) {
+                pages[pageName].classList.remove('hidden');
+            }
+
+            // Update active nav links
+            navLinks.forEach(link => {
+                if (link.dataset.page === pageName) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
+            });
+
+            // Close mobile menu if open
+            mobileMenu.classList.remove('open');
+            const icon = menuToggle.querySelector('i');
+            icon.setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add click event to all navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const page = link.dataset.page;
+                navigateToPage(page);
+            });
+        });
+
+        // Handle "View Projects" button
+        document.querySelectorAll('[data-page="projects"]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigateToPage('projects');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Initialize icons after page load
+        window.addEventListener('load', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
